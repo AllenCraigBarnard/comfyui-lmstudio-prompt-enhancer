@@ -11,7 +11,7 @@ This node uses LM Studio's OpenAI-compatible local API server.
 Install this node from:
 
 ```text
-https://127.0.0.1/exampledude/exampleRepo.git
+https://github.com/AllenCraigBarnard/comfyui-lmstudio-prompt-enhancer.git
 ```
 
 ---
@@ -56,7 +56,7 @@ After cloning the repo, your folder should look like this:
 ```text
 ComfyUI/
 └── custom_nodes/
-    └── exampleRepo/
+    └── comfyui-lmstudio-prompt-enhancer/
         ├── __init__.py
         ├── lmstudio_prompt_enhancer.py
         ├── requirements.txt
@@ -94,19 +94,19 @@ cd C:\path\to\ComfyUI\custom_nodes
 ### 2. Clone the node repository
 
 ```bash
-git clone https://127.0.0.1/exampledude/exampleRepo.git
+git clone https://github.com/AllenCraigBarnard/comfyui-lmstudio-prompt-enhancer.git
 ```
 
 This should create:
 
 ```text
-ComfyUI/custom_nodes/exampleRepo/
+ComfyUI/custom_nodes/comfyui-lmstudio-prompt-enhancer/
 ```
 
 If you want a clearer local folder name, clone it like this instead:
 
 ```bash
-git clone https://127.0.0.1/exampledude/exampleRepo.git comfyui-lmstudio-prompt-enhancer
+git clone https://github.com/AllenCraigBarnard/comfyui-lmstudio-prompt-enhancer.git comfyui-lmstudio-prompt-enhancer
 ```
 
 ### 3. Install the node dependencies
@@ -117,14 +117,14 @@ Linux/macOS:
 
 ```bash
 cd /path/to/ComfyUI
-python -m pip install -r custom_nodes/exampleRepo/requirements.txt
+python -m pip install -r custom_nodes/comfyui-lmstudio-prompt-enhancer/requirements.txt
 ```
 
 Windows PowerShell:
 
 ```powershell
 cd C:\path\to\ComfyUI
-python -m pip install -r custom_nodes\exampleRepo\requirements.txt
+python -m pip install -r custom_nodes\comfyui-lmstudio-prompt-enhancer\requirements.txt
 ```
 
 If you cloned into a custom folder name, update the path accordingly.
@@ -144,7 +144,7 @@ Linux/macOS example:
 ```bash
 cd /path/to/ComfyUI
 source venv/bin/activate
-python -m pip install -r custom_nodes/exampleRepo/requirements.txt
+python -m pip install -r custom_nodes/comfyui-lmstudio-prompt-enhancer/requirements.txt
 ```
 
 Windows PowerShell example:
@@ -152,7 +152,7 @@ Windows PowerShell example:
 ```powershell
 cd C:\path\to\ComfyUI
 .\venv\Scripts\Activate.ps1
-python -m pip install -r custom_nodes\exampleRepo\requirements.txt
+python -m pip install -r custom_nodes\comfyui-lmstudio-prompt-enhancer\requirements.txt
 ```
 
 ### 5. Restart ComfyUI
@@ -197,19 +197,19 @@ cd C:\AI\ComfyUI_windows_portable
 
 ```powershell
 cd .\ComfyUI\custom_nodes
-git clone https://127.0.0.1/exampledude/exampleRepo.git
+git clone https://github.com/AllenCraigBarnard/comfyui-lmstudio-prompt-enhancer.git
 ```
 
 This should create:
 
 ```text
-C:\AI\ComfyUI_windows_portable\ComfyUI\custom_nodes\exampleRepo\
+C:\AI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui-lmstudio-prompt-enhancer\
 ```
 
 If you want a clearer local folder name, clone it like this instead:
 
 ```powershell
-git clone https://127.0.0.1/exampledude/exampleRepo.git comfyui-lmstudio-prompt-enhancer
+git clone https://github.com/AllenCraigBarnard/comfyui-lmstudio-prompt-enhancer.git comfyui-lmstudio-prompt-enhancer
 ```
 
 ### 3. Return to the portable root folder
@@ -229,7 +229,7 @@ C:\AI\ComfyUI_windows_portable
 If you used the default folder name:
 
 ```powershell
-.\python_embeded\python.exe -m pip install -r .\ComfyUI\custom_nodes\exampleRepo\requirements.txt
+.\python_embeded\python.exe -m pip install -r .\ComfyUI\custom_nodes\comfyui-lmstudio-prompt-enhancer\requirements.txt
 ```
 
 If you used the custom folder name:
@@ -262,34 +262,6 @@ prompt / LLM / LM Studio Prompt Enhancer
 
 ---
 
-## Note About the Example HTTPS Repo URL
-
-The repository URL used in this README is:
-
-```text
-https://127.0.0.1/exampledude/exampleRepo.git
-```
-
-Because this is a localhost HTTPS URL, your Git server may use a self-signed certificate.
-
-If Git refuses to clone because of a certificate error, fix the local Git server certificate if possible.
-
-For quick local testing only, you can clone with SSL verification disabled for this one command:
-
-```bash
-git -c http.sslVerify=false clone https://127.0.0.1/exampledude/exampleRepo.git
-```
-
-Or with a custom folder name:
-
-```bash
-git -c http.sslVerify=false clone https://127.0.0.1/exampledude/exampleRepo.git comfyui-lmstudio-prompt-enhancer
-```
-
-Do not use disabled SSL verification for untrusted remote servers.
-
----
-
 ## Updating the Node
 
 To update the node later, go into the cloned folder and pull the latest changes.
@@ -297,14 +269,14 @@ To update the node later, go into the cloned folder and pull the latest changes.
 Manual ComfyUI example:
 
 ```bash
-cd /path/to/ComfyUI/custom_nodes/exampleRepo
+cd /path/to/ComfyUI/custom_nodes/comfyui-lmstudio-prompt-enhancer
 git pull
 ```
 
 Windows Portable example:
 
 ```powershell
-cd C:\AI\ComfyUI_windows_portable\ComfyUI\custom_nodes\exampleRepo
+cd C:\AI\ComfyUI_windows_portable\ComfyUI\custom_nodes\comfyui-lmstudio-prompt-enhancer
 git pull
 ```
 
@@ -314,14 +286,14 @@ Manual ComfyUI:
 
 ```bash
 cd /path/to/ComfyUI
-python -m pip install -r custom_nodes/exampleRepo/requirements.txt
+python -m pip install -r custom_nodes/comfyui-lmstudio-prompt-enhancer/requirements.txt
 ```
 
 Windows Portable:
 
 ```powershell
 cd C:\AI\ComfyUI_windows_portable
-.\python_embeded\python.exe -m pip install -r .\ComfyUI\custom_nodes\exampleRepo\requirements.txt
+.\python_embeded\python.exe -m pip install -r .\ComfyUI\custom_nodes\comfyui-lmstudio-prompt-enhancer\requirements.txt
 ```
 
 Restart ComfyUI after updating.
@@ -894,7 +866,7 @@ Check:
 For local testing with a self-signed certificate only:
 
 ```bash
-git -c http.sslVerify=false clone https://127.0.0.1/exampledude/exampleRepo.git
+git -c http.sslVerify=false clone https://github.com/AllenCraigBarnard/comfyui-lmstudio-prompt-enhancer.git
 ```
 
 ### `ModuleNotFoundError: No module named 'openai'`
@@ -904,13 +876,13 @@ The `openai` package was not installed into the Python environment used by Comfy
 Manual ComfyUI:
 
 ```bash
-python -m pip install -r custom_nodes/exampleRepo/requirements.txt
+python -m pip install -r custom_nodes/comfyui-lmstudio-prompt-enhancer/requirements.txt
 ```
 
 Windows Portable:
 
 ```powershell
-.\python_embeded\python.exe -m pip install -r .\ComfyUI\custom_nodes\exampleRepo\requirements.txt
+.\python_embeded\python.exe -m pip install -r .\ComfyUI\custom_nodes\comfyui-lmstudio-prompt-enhancer\requirements.txt
 ```
 
 ### LM Studio connection failed
