@@ -1,0 +1,14 @@
+.git/
+.github/
+.vscode/
+__pycache__/
+*.pyc
+tests/
+docs/dev/
+*.psd
+*.kra
+*.safetensors
+*.ckpt
+*.gguf
+*.pt
+*.pth
