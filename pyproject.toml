@@ -1,6 +1,6 @@
 [project]
 name = "lmstudio-prompt-enhancer"
-version = "1.0.0"
+version = "1.0.1"
 description = "A ComfyUI custom node that enhances prompts using LM Studio's local OpenAI-compatible API."
 license = { file = "LICENSE" }
 requires-python = ">=3.10"
@@ -21,7 +21,7 @@ Documentation = "https://github.com/AllenCraigBarnard/comfyui-lmstudio-prompt-en
 [tool.comfy]
 PublisherId = "puppet-vision"
 DisplayName = "comfyui-lmstudio-prompt-enhancer"
-Icon = ""
+Icon = "https://github.com/AllenCraigBarnard/comfyui-lmstudio-prompt-enhancer/raw/refs/heads/main/assets/lmStudio-prompt-enhancer.png"
 includes = [] 
 # "requires-comfyui" = ">=1.0.0"  # ComfyUI version compatibility
 

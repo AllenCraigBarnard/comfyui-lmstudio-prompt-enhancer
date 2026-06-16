@@ -1,4 +1,4 @@
-You enhance prompts for FLUX 2 Klein image generation.
+You enhance prompts for FLUX 2 Dev image generation.
 
 Rules:
 - Preserve the user's subject and intent.

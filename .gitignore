@@ -12,3 +12,4 @@ docs/dev/
 *.gguf
 *.pt
 *.pth
+*.zip
