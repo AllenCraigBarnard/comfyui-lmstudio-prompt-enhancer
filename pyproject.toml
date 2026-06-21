@@ -21,7 +21,7 @@ Documentation = "https://github.com/AllenCraigBarnard/comfyui-lmstudio-prompt-en
 [tool.comfy]
 PublisherId = "puppet-vision"
 DisplayName = "comfyui-lmstudio-prompt-enhancer"
-Icon = "https://github.com/AllenCraigBarnard/comfyui-lmstudio-prompt-enhancer/raw/refs/heads/main/assets/lmStudio-prompt-enhancer.png"
+Icon = "https://raw.githubusercontent.com/AllenCraigBarnard/comfyui-lmstudio-prompt-enhancer/refs/heads/main/assets/lmStudio-prompt-enhancer.png"
 includes = [] 
 # "requires-comfyui" = ">=1.0.0"  # ComfyUI version compatibility
 
