@@ -1,324 +1,417 @@
-This chat focused on creating and refining system prompts for local LLM-based prompt enhancers targeting several generative AI models.
-
-## General Prompt-Enhancer Preferences
-
-The user wants system prompts that:
-
-* Preserve the user's original subject, intent, style, mood, composition, and requested outcome.
-* Treat explicit user requirements as fixed constraints that must not be omitted, contradicted, weakened, or reinterpreted.
-* Add useful visual/audio/cinematography detail without introducing unrelated content.
-* Resolve minor ambiguity conservatively.
-* Avoid repetition, filler, vague quality tags, and unsupported model-specific syntax.
-* Return only the enhanced generation prompt, without explanation or analysis.
-* Be optimized for use with local LLMs, including compressed versions where instruction adherence is more important than exhaustive detail.
-* Use model-specific prompting best practices rather than generic Stable Diffusion prompting conventions.
-
-## Z-Image Turbo Prompt Enhancer
-
-An initial Z-Image Turbo system prompt was expanded with a dedicated best-practices section.
-
-Important rules established:
-
-* Maximum enhanced prompt length: 512 tokens.
-* Use clear natural-language descriptions instead of keyword lists or tag clouds.
-* Logical visual ordering: subject/action → appearance → environment → composition → lighting → palette → materials → atmosphere → camera.
-* Use concrete visible descriptions rather than abstract praise or metaphors.
-* Specify quantities, positions, scale, interactions, and foreground/background relationships.
-* Add camera/lens terminology only when useful and internally consistent.
-* Describe lighting by source, direction, softness, intensity, temperature, reflections, shadows, etc.
-* Describe materials via visible physical properties.
-* Preserve deliberate color assignments.
-* For photorealism: believable anatomy, natural texture, plausible lighting/materials/scale.
-* For stylized imagery: define medium, rendering style, line quality, shape language, texture, and degree of stylization.
-* Avoid empty quality tags such as “masterpiece,” “best quality,” “8K,” “award-winning.”
-* Z-Image Turbo does not use a separate negative prompt; restrictions should be expressed positively inside the main prompt.
-* Do not use SD weighting syntax, nested parentheses, BREAK, numerical emphasis, etc.
-* For multiple subjects, explicitly distinguish position, appearance, action, and prominence.
-* Exact requested visible text must be preserved and placed in double quotes.
-* Do not add logos, captions, watermarks, signage, or visible text unless requested.
-* Output exactly one paragraph containing only the enhanced positive prompt.
-
-A compressed Z-Image Turbo version was also created for smaller local LLMs.
-
-## Krea 2
-
-The chat established that Krea 2 is Krea.ai’s own 12B text-to-image model family, including:
-
-* Krea 2 Turbo: distilled fast generation checkpoint, approximately 8 inference steps.
-* Krea 2 RAW: undistilled checkpoint intended for LoRA training/fine-tuning.
-
-A Krea 2 prompt-enhancer system prompt was created, followed by a compressed version.
-
-Important Krea 2 prompting principles:
-
-* Natural-language prompting rather than tag clouds.
-* Start directly with the main subject/action.
-* Logical order: subject → appearance → environment → composition → lighting → palette → materials → atmosphere → camera.
-* Krea 2 supports a broad aesthetic range; do not automatically force cinematic photorealism.
-* Preserve experimental, handmade, painterly, graphic, low-fidelity, collage, illustration, anime, 3D, photography, etc. when requested.
-* Increased specificity gives tighter consistency, but intentionally unspecified details should remain open when appropriate.
-* Use concrete visible descriptions.
-* Clearly assign colors to subjects/objects/light/background.
-* Add camera/lens details only when they support the composition.
-* Avoid generic “masterpiece/8K” tags and SD prompt-weight syntax.
-* No separate negative prompt; express restrictions as desired positive visual states.
-* Handle multiple subjects explicitly to reduce attribute mixing.
-* Exact requested rendered text should remain inside double quotes.
-* When reference images, LoRAs, moodboards, or style references are mentioned, preserve only the user-defined influence and do not invent unseen reference details.
-* Output one paragraph only.
-
-## ACE-Step 1.5 Text-to-Music / Lyrics Prompt Enhancer
-
-A system prompt was created for enhancing ACE-Step 1.5 music prompts.
-
-It outputs two sections:
-CAPTION
-LYRICS
-
-Caption guidance:
-
-* Caption describes the overall musical identity rather than chronological song structure.
-* Preserve genre, subgenre, mood, vocal style, instrumentation, production style, era, etc.
-* Use concise, information-dense musical language.
-* Avoid overcrowding with unrelated genres or excessive instruments.
-* Describe vocals by register, tone, delivery, articulation, intensity, harmonies, etc.
-* Describe production characteristics such as polished studio, live/raw, analogue, spacious, lo-fi, orchestral, electronic, etc.
-* Do not place BPM, key, time signature, duration, or language in the Caption when dedicated ACE-Step metadata fields are available.
-* Do not invent metadata unless requested.
-
-Lyrics guidance:
-
-* Lyrics serve as the temporal/structural script.
-* Use square-bracket section tags such as [Intro], [Verse 1], [Pre-Chorus], [Chorus], [Bridge], [Outro].
-* Other appropriate tags include [Build], [Drop], [Breakdown], [Instrumental], [Guitar Solo], [Drum Break], [Fade Out].
-* Short performance descriptors can be included in tags, e.g. [Chorus - anthemic].
-* Avoid overloading section tags.
-* Keep lyrics singable, generally around 6–10 syllables per line unless genre requires otherwise.
-* Maintain similar line density within sections.
-* Verses advance story; chorus carries the hook; bridge provides contrast/revelation.
-* Preserve user-provided hooks exactly.
-* Blank line between sections.
-* Parentheses can indicate backing vocals/echoes.
-* Uppercase only sparingly for shouted emphasis.
-* Maintain consistent language, point of view, tense, narrative, and emotional arc.
-* Avoid generic lyrical clichés, forced rhymes, filler, incoherent metaphors, and redundant verses.
-* Rap/spoken word should prioritize cadence, stress, internal rhyme, and bar length.
-* For instrumental music, use [Instrumental] and omit sung lyrics.
-* Generated lyrics must be original; do not reproduce existing copyrighted song lyrics.
-
-## LTX Text-to-Video Prompt Enhancer
-
-A comprehensive system prompt was created for LTX text-to-video generation.
-
-Core approach:
-
-* Write one coherent natural-language paragraph.
-* Begin with opening shot/main subject/action.
-* Present events chronologically.
-* Use present-tense action verbs.
-* Think like a cinematographer describing one complete shot.
-* Preserve subject/environment/lighting/wardrobe/scale/object consistency.
-* Target no more than ~200 words unless the user requests otherwise.
-
-Motion/timing:
-
-* Use concrete physical verbs.
-* Specify sequence, movement direction, speed, trajectory, and final state when relevant.
-* Prefer natural timing language such as slowly, gradually, throughout, near the end.
-* Exact timestamps only when user supplied or essential.
-* Avoid excessive numerical micromanagement.
-* If something must remain fixed, state that position, orientation, scale, shape, and appearance remain fixed throughout.
-* If only one element should move, explicitly state all others remain unchanged.
-* For loops, final state should match the opening state.
-
-Camera:
-
-* Define shot size/angle when useful.
-* Camera terms include static, pan, tilt, dolly, tracking, orbit, crane, handheld, etc.
-* Distinguish physical camera movement from optical zoom.
-* For locked camera: explicitly prohibit pan, tilt, roll, orbit, tracking, shake, reframing, dolly movement, zoom, focal-length change, and perspective change.
-* Do not add cuts or transitions unless requested.
-
-Style/environment:
-
-* Preserve requested medium: live action, anime, stop motion, painterly, stylized 3D, photoreal CGI, etc.
-* Do not force cinematic photorealism.
-* Describe lighting via visible source/direction/intensity/temperature/reflections/shadows.
-* Describe environmental motion such as mist, rain, wind, fabric, water, dust, foliage.
-* Keep environmental motion subordinate to main action unless it is the focus.
-
-Audio/dialogue:
-
-* For LTX workflows supporting audio, describe sound after the visual sequence.
-* Synchronize sounds with visible causes.
-* Dialogue inside double quotes.
-* Preserve exact user dialogue unless rewriting requested.
-* Identify speaker and voice characteristics when relevant.
-* Break long dialogue into shorter phrases separated by physical actions/pauses.
-* Do not add dialogue/music/audio when silence is requested.
-* For workflows without audio support, omit added audio instructions unless explicitly requested for production use.
-
-## FLUX 3 Text-to-Video Prompt Enhancer
-
-The latest and most detailed system prompt in the chat was for Black Forest Labs FLUX 3 text-to-video.
-
-The enhancer recognizes multiple prompt styles rather than forcing everything into one format:
-
-1. SIMPLE SCENE
-   Natural-language paragraph for straightforward clips.
-
-2. DIRECTED SCENE
-   Detailed prose for camera, motion, lighting, continuity, and audio control.
-
-3. TIMESTEP SEQUENCE
-   Timestamped beats for precisely ordered actions/camera changes.
-
-4. MULTI-SHOT SEQUENCE
-   Explicit SHOT ONE / SHOT TWO / etc., with HARD CUT when appropriate.
-
-5. FULL STRUCTURED SEQUENCE
-   For complex prompts, using conceptual sections:
-
-* Core summary
-* Scene
-* Subject description
-* Dynamic narrative
-* Audio
-* Style and color
-
-FLUX 3 general best practices:
-
-* Think like a director describing a video, not like an image keyword prompt.
-* Establish subject, action, camera, environment, motion quality, continuity, and audio.
-* Simple scenes can remain short natural-language one-liners.
-* Complex scenes benefit from temporal or shot structure.
-* Use active, concrete verbs and observable descriptions.
-* Avoid overstuffing short clips with too many actions, camera movements, effects, dialogue, and narrative beats.
-* Longer prompts should provide useful control, not redundant adjectives.
-* Preserve logical cause and effect.
-
-Subject/action:
-
-* Explicitly distinguish multiple subjects.
-* Specify subject count when supplied.
-* Use stable identifying traits for continuity.
-* Define movement direction, speed, intensity, and trajectory when useful.
-* Keep physical motion plausible unless surreal behavior is intentionally requested.
-* Express emotion through visible performance: posture, gaze, gestures, facial tension, breathing, hesitation, etc.
-
-Temporal control:
-
-* Use language such as initially, then, while, gradually, afterward, near the end, finally.
-* Timestamp prompting can use forms such as:
-  0.0–2.0s — action
-  2.0–4.0s — action
-  4.0–6.0s — action
-* Use timestamps only when precision is actually required.
-* Do not cram too many large events into a ~5-second clip.
-* For fixed elements, explicitly preserve position, orientation, scale, shape, and appearance.
-* For loops, make final and opening states compatible.
-
-Camera:
-
-* A useful default is roughly one framing instruction + one primary camera movement + one clear subject action.
-* Avoid stacking incompatible camera terms.
-* Shot sizes: close-up, medium, medium-wide, full-body, wide, establishing, etc.
-* Angles: eye-level, low, high, overhead, profile, frontal, over-the-shoulder, POV.
-* Movement: static, pan, tilt, push-in, pull-back, dolly, lateral tracking, follow, orbit, crane, handheld, aerial drift, whip pan.
-* Distinguish zoom from physical dolly movement.
-* Static-camera requests should remain completely locked without invented motion.
-* Lens/focus terminology should remain internally consistent.
-* Do not add cuts if user requests one continuous shot.
-
-Scene/style:
-
-* Establish location, foreground/midground/background, time of day, weather, atmosphere.
-* Lighting should be defined by actual source and behavior.
-* Color assignments should remain explicit and consistent.
-* Environmental motion should support, not compete with, primary subject motion.
-* Preserve requested visual style and do not automatically force cinematic realism.
-* Supported conceptual styles may include photoreal live action, documentary, analogue film, anime, 2D animation, stop motion, claymation, stylized 3D, motion graphics, painterly or surreal experimental video.
-* Avoid generic quality tags.
-
-FLUX 3 multi-shot guidance:
-
-* Use multiple shots only if genuinely required.
-* Explicit shot labels.
-* HARD CUT for immediate edits.
-* Preserve character identity, clothing, props, environmental logic, palette, and style across shots.
-* Each shot should have one clear purpose.
-* Ensure shot-to-shot continuity unless deliberate discontinuity is requested.
-
-FLUX 3 audio:
-
-* Audio is part of scene direction because FLUX 3 can generate synchronized audio.
-* Audio can include dialogue, ambience, sound effects, and music.
-* Prefer physically identifiable sound sources.
-* Tie effects directly to visible actions.
-* Reduce competing audio when dialogue is important.
-* Describe music by style, energy/tempo, instrumentation, and mix position when useful.
-* Respect silence requests.
-
-Dialogue:
-
-* Spoken lines inside double quotes.
-* Preserve exact supplied wording unless rewriting requested.
-* Clearly identify the speaker.
-* Distinguish visible on-camera speech from narration/voiceover.
-* Voice characteristics can include age range, accent, register, pitch, pacing, projection, and delivery.
-* Keep dialogue short enough for clip duration and leave time for physical performance.
-* Distinguish spoken dialogue from rendered text.
-* If spoken words should not appear visually, explicitly state no subtitles/on-screen text.
-
-Visible typography:
-
-* FLUX 3 supports in-scene typography better than many video models.
-* Preserve exact requested spelling/capitalization/punctuation.
-* Put intended visible text inside double quotes.
-* Specify placement, typography, orientation, scale, material, color, or animation when useful.
-* Do not invent captions, signs, logos, UI text, or subtitles unless requested.
-
-Continuity/reliability:
-
-* Preserve identity, facial appearance, clothing, body proportions, props, scale, color, environmental layout, and lighting logic.
-* Prevent unexplained duplication, disappearing objects, wardrobe changes, morphing, or environment replacement.
-* Do not combine contradictory requirements.
-* Do not weaken strict user terms such as “must,” “only,” “exactly,” “completely,” “fixed,” “unchanged,” or “throughout.”
-* Do not use SD prompt weighting, nested parentheses, BREAK syntax, etc.
-* Remove redundant adjectives and duplicate constraints.
-
-FLUX 3 output rules:
-
-* Return only the enhanced FLUX 3 video prompt.
-* No analysis/explanation/introduction.
-* Do not reproduce the original request separately.
-* Do not invent resolution, duration, aspect ratio, seed, or API parameters unless supplied by user.
-* No separate negative prompt.
-* No wrapper quotation marks.
-* Simple/moderate prompts should normally be one paragraph.
-* Timestep, multi-shot, and fully structured prompts may use labels and line breaks when that materially improves control.
-
-## Overall Direction for Future Work
-
-When creating new prompt-enhancer system prompts:
-
-* First identify model-specific strengths, limitations, syntax, and supported controls.
-* Add a clearly named “[MODEL] PROMPT WRITING BEST PRACTICES” section.
-* Separate core preservation rules from model-specific guidance.
-* Avoid importing conventions from Stable Diffusion unless the target model actually supports them.
-* Include explicit reliability/continuity rules.
-* Include modality-specific handling: camera/motion for video, audio/dialogue when supported, song structure for music, typography where supported.
-* Prefer concise natural language for simple generations and structured formats only when complexity requires them.
-* When requested, create a compressed version optimized for smaller local LLMs while retaining the critical model-specific rules.
+# LM Studio Prompt Enhancer for ComfyUI
+
+A ComfyUI custom node that enhances prompts for **image generation** and **video generation** using an LLM running through **LM Studio's OpenAI-compatible API**.
+
+The node can work from text alone or use up to two optional ComfyUI `IMAGE` inputs as visual context. It includes generation-mode-aware prompting, style compatibility checks, configurable system prompts, automatic LM Studio model selection, and support for multimodal/vision models when image inputs are used.
+
+---
+
+## Features
+
+- Enhance prompts for **image generation**
+- Enhance prompts for **video generation**
+- Connect to a local or remote **LM Studio** server
+- Use LM Studio's OpenAI-compatible API
+- Automatic model selection with `model = auto`
+- Manually specify an LM Studio model ID
+- Optional `input_image_1` and `input_image_2` visual inputs
+- Different image semantics for image and video prompt modes
+- Image, cinematic, photographic, and motion-oriented style presets
+- Generation-mode/style compatibility validation
+- Editable system prompt
+- Adjustable LLM temperature
+- Configurable output limit up to **10,000 tokens**
+- Manual LLM passthrough mode
+- Cache-buster control for forcing fresh ComfyUI execution
+- Automatic image resizing before sending visual context to LM Studio
+- Local-first workflow when used with a local LM Studio server
 
+---
+
+## How It Works
+
+```text
+Original Prompt
+     │
+     ├── Optional input_image_1
+     ├── Optional input_image_2
+     │
+     ▼
+LM Studio Prompt Enhancer
+     │
+     ├── Validate generation mode
+     ├── Validate style compatibility
+     ├── Resolve LM Studio model
+     ├── Prepare optional image context
+     ├── Build multimodal prompt
+     └── Send request to LM Studio
+     │
+     ▼
+Enhanced Prompt
+```
+
+The node outputs a single ComfyUI `STRING`:
+
+```text
+enhanced_prompt
+```
+
+This can be connected to the prompt or text-conditioning portion of an image or video generation workflow.
+
+---
+
+## Generation Modes
+
+### Image generation prompt
+
+In image mode:
+
+```text
+input_image_1 = Base Image
+input_image_2 = Reference Image
+```
+
+The enhancer instructs the LLM to preserve important content from the base image while using the reference image for relevant visual guidance such as:
+
+- composition
+- subject appearance
+- lighting
+- color palette
+- materials
+- environment
+- visual style
+- texture
+- atmosphere
+
+Both image inputs are optional.
+
+### Video generation prompt
+
+In video mode:
+
+```text
+input_image_1 = First Frame
+input_image_2 = Last Frame
+```
+
+When images are connected, the LLM is instructed to construct a coherent video-generation prompt between those two frames.
+
+Video-prompt enhancement can include:
+
+- subject motion
+- environmental motion
+- camera movement
+- framing
+- shot evolution
+- timing
+- pacing
+- continuity
+- lighting
+- atmosphere
+- cinematic direction
+
+Both frame inputs are optional.
+
+> **Note:** The node does not accept or decode a ComfyUI `VIDEO` input. Video mode refers to generating a prompt intended for a video-generation model.
+
+---
+
+## Style Presets
+
+### Image and Video
+
+These styles can be used with either generation mode:
+
+- cinematic
+- cinematic anamorphic
+- cinematic 35mm film
+- large-format cinematic
+- cinematic noir
+- cinematic documentary
+- cinematic commercial
+- photorealistic
+- anime
+- fantasy art
+- sci-fi concept art
+- minimal enhancement
+
+### Image Only
+
+- editorial photography
+- portrait photography
+- product photography
+- architectural photography
+- macro photography
+
+### Video Only
+
+- cinematic music video
+- cinematic slow motion
+- dynamic action cinematography
+- handheld realism
+- drone / aerial cinematography
+- timelapse cinematography
+- macro cinematography
+- product commercial video
+- single-take / oner
+- tracking shot
+- orbit shot
+- dolly zoom
+- FPV action
+
+If the selected style conflicts with the selected generation mode, the node stops before calling LM Studio and raises an error explaining the conflict.
+
+Example:
+
+```text
+Generation mode: Image generation prompt
+Style: cinematic slow motion
+```
+
+This combination will fail because `cinematic slow motion` is a video-only style.
+
+---
+
+## Requirements
+
+- ComfyUI
+- LM Studio
+- Python 3.10 or newer
+- An LLM supported by LM Studio
+
+Python dependencies:
+
+```text
+openai>=1.0.0
+numpy
+Pillow
+```
+
+If you connect image inputs, the selected model must support image/multimodal input.
+
+The node does **not** pre-check whether the selected model is vision-capable. If images are connected to an incompatible text-only model, LM Studio or the model runtime will return the corresponding error.
+
+---
+
+## Installation
+
+### 1. Clone the repository
+
+Clone the repository into your ComfyUI `custom_nodes` directory:
+
+```bash
+cd ComfyUI/custom_nodes
+git clone https://github.com/AllenCraigBarnard/comfyui-lmstudio-prompt-enhancer.git
+```
+
+Your folder structure should look similar to:
+
+```text
+ComfyUI/
+└── custom_nodes/
+    └── comfyui-lmstudio-prompt-enhancer/
+```
+
+### 2. Install dependencies
+
+From the Python environment used by ComfyUI:
+
+```bash
+pip install -r requirements.txt
+```
+
+For ComfyUI Portable on Windows, use ComfyUI's embedded Python environment.
+
+Example:
+
+```bat
+python_embeded\python.exe -m pip install -r ComfyUI\custom_nodes\comfyui-lmstudio-prompt-enhancer\requirements.txt
+```
+
+### 3. Restart ComfyUI
+
+Fully restart the ComfyUI backend after installing or updating the custom node.
+
+The node should appear under:
+
+```text
+prompt/LLM
+```
+
+with the display name:
+
+```text
+LM Studio Prompt Enhancer
+```
+
+---
+
+## LM Studio Setup
+
+### 1. Install and launch LM Studio
+
+Load or make available the LLM you want to use.
+
+### 2. Start the LM Studio API server
+
+The default server URL used by the node is:
+
+```text
+http://127.0.0.1:1234/v1
+```
+
+If your LM Studio server uses a different address or port, update:
+
+```text
+lmstudio_base_url
+```
+
+inside the node.
+
+### 3. Choose a model
+
+The default model setting is:
+
+```text
+auto
+```
+
+When `auto` is selected, the node asks LM Studio for the available model list and uses the first model returned.
+
+If you have multiple models available and want deterministic selection, enter the exact LM Studio model identifier manually.
+
+---
+
+## Node Inputs
+
+| Input | Type | Description |
+|---|---|---|
+| `prompt` | STRING | Original prompt to enhance |
+| `generation_mode` | ENUM | Image generation or video generation |
+| `system_prompt` | STRING | Instructions sent to the LLM |
+| `style` | ENUM | Prompt enhancement style |
+| `lmstudio_base_url` | STRING | LM Studio OpenAI-compatible API URL |
+| `lmstudio_api_key` | STRING | Optional LM Studio API key/token |
+| `model` | STRING | Model ID or `auto` |
+| `temperature` | FLOAT | LLM sampling temperature |
+| `max_tokens` | INT | Maximum completion tokens, up to 10,000 |
+| `enable_llm` | BOOLEAN | Enable enhancement or return the original prompt |
+| `cache_buster` | INT | Change to force a fresh ComfyUI execution |
+| `input_image_1` | IMAGE | Base image in image mode; first frame in video mode |
+| `input_image_2` | IMAGE | Reference image in image mode; last frame in video mode |
+
+---
+
+## Node Output
+
+| Output | Type | Description |
+|---|---|---|
+| `enhanced_prompt` | STRING | Enhanced positive generation prompt |
+
+---
+
+## API Key Handling
+
+The node resolves the LM Studio API key in the following order:
+
+1. `lmstudio_api_key` entered directly in the node
+2. `LM_STUDIO_API_KEY` environment variable
+3. fallback value `lm-studio`
+
+The fallback is suitable for normal local LM Studio installations where API authentication is not enabled.
+
+Linux/macOS:
+
+```bash
+export LM_STUDIO_API_KEY="your-api-key"
+```
+
+Windows PowerShell:
+
+```powershell
+$env:LM_STUDIO_API_KEY="your-api-key"
+```
+
+---
+
+## Image Processing
+
+Connected ComfyUI `IMAGE` tensors are converted into RGB images and supplied to LM Studio as OpenAI-compatible base64 image URLs.
+
+Large images are automatically resized while preserving aspect ratio.
+
+Maximum image side:
+
+```text
+1024 px
+```
+
+Supported input tensor layouts:
+
+```text
+[H, W, C]
+```
+
+or:
+
+```text
+[B, H, W, C]
+```
+
+If an image batch is supplied, only the first image in that batch is used.
+
+---
+
+## Default System Prompt
+
+The included default system prompt is intentionally compact so it remains practical for smaller local LLMs.
+
+It instructs the model to:
+
+- preserve the user's subject and intent
+- respect user constraints
+- enhance image or video generation prompts
+- apply mode-specific image semantics
+- improve composition and visual specificity
+- add lighting, camera, material, environment, and atmosphere details when useful
+- add motion, continuity, pacing, and camera movement for video prompts
+- use connected images as visual evidence
+- avoid contradicting visible content
+- avoid explanations and Markdown
+- return one positive prompt
+- avoid introducing unrelated copyrighted characters, celebrities, artists, or trademarked IP
+
+The `system_prompt` field can be replaced with model-specific system prompts.
+
+---
+
+## Example System Prompts
+
+Example system prompts are available here:
+
+https://github.com/AllenCraigBarnard/comfyui-lmstudio-prompt-enhancer/tree/main/Example_System_Prompts
+
+The repository includes prompt-enhancement system prompts optimized for:
+
+- FLUX
+- FLUX 3 Video
+- SDXL
+- Pony
+- KREA2
+- Z-Image Turbo
+- Qwen Image
+
+These can be copied into the node's `system_prompt` field and adapted to suit your chosen model or workflow.
+
+---
 
 ## Example Workflows
 
-Example ComfyUI workflows are available in the repository:
+Example ComfyUI workflows are available here:
 
 https://github.com/AllenCraigBarnard/comfyui-lmstudio-prompt-enhancer/tree/main/Workflows
 
-These workflows are optimized for:
+The included workflows are optimized for:
 
 - FLUX
 - FLUX 3 Video
@@ -327,5 +420,217 @@ These workflows are optimized for:
 - KREA2
 - Z-Image Turbo
 
-They can be used as starting points for integrating the LM Studio Prompt Enhancer into model-specific image and video generation workflows.
+Use them as starting points for integrating the LM Studio Prompt Enhancer into model-specific image and video generation pipelines.
 
+---
+
+## Example: Image Prompt Enhancement
+
+Original prompt:
+
+```text
+a futuristic sports car in the rain
+```
+
+Suggested settings:
+
+```text
+Generation mode: Image generation prompt
+Style: cinematic
+```
+
+Possible enhanced output:
+
+```text
+A futuristic high-performance sports car parked on a rain-soaked neon-lit city street at night, low three-quarter camera angle, reflective bodywork, wet pavement catching colorful urban reflections, dramatic rim lighting, volumetric mist, shallow depth of field, realistic water droplets, detailed materials, atmospheric contrast, polished cinematic automotive photography.
+```
+
+Actual output depends on the selected LLM, temperature, system prompt, and connected images.
+
+---
+
+## Example: Video Prompt Enhancement
+
+Original prompt:
+
+```text
+a motorcycle drives through a futuristic city
+```
+
+Suggested settings:
+
+```text
+Generation mode: Video generation prompt
+Style: tracking shot
+```
+
+Possible enhanced output:
+
+```text
+A high-speed motorcycle races through a dense futuristic city at night as the camera performs a smooth low-angle tracking shot alongside the rider, neon signs and illuminated towers streak through the background, the wheels spray water from the reflective street, subtle suspension movement and rider body motion create realistic momentum, dynamic parallax and controlled motion blur reinforce speed while consistent vehicle appearance, dramatic rim lighting, atmospheric haze, and continuous forward motion maintain cinematic continuity.
+```
+
+---
+
+## Bypass / Passthrough Mode
+
+Set:
+
+```text
+enable_llm = false
+```
+
+to return the original prompt unchanged.
+
+When passthrough mode is enabled, the node does not contact LM Studio.
+
+---
+
+## Cache Buster
+
+ComfyUI may reuse previously calculated node results when none of its inputs have changed.
+
+Change:
+
+```text
+cache_buster
+```
+
+to another integer to make ComfyUI treat the node as changed and request a fresh LLM completion.
+
+The `cache_buster` value itself is not included in the LLM prompt.
+
+---
+
+## Troubleshooting
+
+### LM Studio connection failed
+
+Check that:
+
+- LM Studio is running
+- the API server has been started
+- `lmstudio_base_url` is correct
+- the configured port is correct
+- authentication settings are correct
+- your firewall is not blocking the connection
+
+Default endpoint:
+
+```text
+http://127.0.0.1:1234/v1
+```
+
+### `auto` selects the wrong model
+
+`auto` uses the first model returned by LM Studio.
+
+If several models are available, enter the exact model identifier manually.
+
+### Images cause an LLM/API error
+
+The node does not pre-validate vision capability.
+
+If `input_image_1` or `input_image_2` is connected, make sure the selected model supports image/multimodal input.
+
+If it does not, either:
+
+- switch to a multimodal/vision-capable model, or
+- disconnect the image inputs
+
+### Images appear to be ignored
+
+Confirm that:
+
+- the selected model supports image input
+- `input_image_1` or `input_image_2` is connected
+- the model performs well at visual instruction following
+- the system prompt instructs the model to use visual context
+
+### Generation-mode/style conflict
+
+The selected style is restricted to the other generation mode.
+
+Choose a style compatible with the current mode.
+
+### Prompt output changes the original intent too much
+
+Try:
+
+- lowering `temperature`
+- choosing `minimal enhancement`
+- using a more restrictive system prompt
+- explicitly stating required constraints in the original prompt
+
+### Prompt output is too conservative
+
+Try:
+
+- increasing `temperature`
+- selecting a more specific style
+- adding an image reference
+- using one of the model-specific example system prompts
+
+---
+
+## Privacy
+
+When using the default local LM Studio endpoint, prompt enhancement can run entirely on your own machine.
+
+If you change:
+
+```text
+lmstudio_base_url
+```
+
+to a remote endpoint, prompt text and any connected image data will be sent to that server.
+
+Review the privacy and security policies of any remote endpoint you use.
+
+---
+
+## Repository Resources
+
+### Example System Prompts
+
+https://github.com/AllenCraigBarnard/comfyui-lmstudio-prompt-enhancer/tree/main/Example_System_Prompts
+
+### Example Workflows
+
+https://github.com/AllenCraigBarnard/comfyui-lmstudio-prompt-enhancer/tree/main/Workflows
+
+### Issues
+
+https://github.com/AllenCraigBarnard/comfyui-lmstudio-prompt-enhancer/issues
+
+---
+
+## Contributing
+
+Bug reports, compatibility reports, improvements, and pull requests are welcome.
+
+When reporting an issue, please include:
+
+- ComfyUI version
+- LM Studio version
+- model name
+- operating system
+- relevant node settings
+- ComfyUI console/error output
+- whether image inputs were connected
+
+Do not include API keys, tokens, or other credentials in issue reports.
+
+---
+
+## License
+
+See the repository's `LICENSE` file for licensing information.
+
+---
+
+## Disclaimer
+
+This project is an independent ComfyUI custom node for use with LM Studio.
+
+It is not an official ComfyUI, LM Studio, Black Forest Labs, Stability AI, Krea, Qwen, or other model-provider project.
