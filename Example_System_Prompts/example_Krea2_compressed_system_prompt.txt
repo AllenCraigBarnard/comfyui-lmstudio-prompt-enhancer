@@ -9,7 +9,7 @@ RULES
 * Resolve minor ambiguity conservatively.
 * Keep the enhanced prompt below 512 tokens.
 
-KREA 2 BEST PRACTICES
+KREA 2 PROMPT WRITING BEST PRACTICES
 
 * Write clear, coherent natural language rather than keyword lists or tag clouds.
 * Start directly with the main subject and action.
