@@ -1,6 +1,6 @@
 [project]
 name = "lmstudio-prompt-enhancer"
-version = "2.0.1"
+version = "2.0.2"
 description = "A ComfyUI custom node that enhances image and video generation prompts using LM Studio's local OpenAI-compatible API."
 license = { file = "LICENSE" }
 requires-python = ">=3.10"
